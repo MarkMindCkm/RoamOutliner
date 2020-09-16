@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind</title>
+    <link rel="stylesheet" href="./dist/github-markdown.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./dist/icon/iconfont.css" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <script src="./dist/app.js"></script>
+    <style>
+         html,body{
+            width:100%;
+            height:100%;
+            padding: 0;
+            margin:0;
+            overflow: hidden;
+        }
+        .app{
+            width:100%;
+            height:100%;
+            overflow: auto;
+        }
+   
+        .top-bar{
+                user-select: none;
+                position: fixed;
+                top:0;
+                left:0px;
+                right:0;
+                width:100%;
+                height: 24px;
+                line-height: 24px;
+                background:#f6f6f6;
+                color:#333;
+                z-index:2000;
+                -webkit-app-region: drag;
+            }
+
+             .theme-dark .top-bar{
+                background: #424242;
+                color:rgba(255,255,255,.01);
+              }
+
+              .top-bar .close:hover{
+                background: red;
+              }
+               
+              .btn-group{
+                position: fixed;
+                right: 0;
+                top:0;
+                z-index: 5000;
+                color:#333;
+                width: 120px;
+                overflow: hidden;
+                -webkit-app-region: no-drag;
+                -webkit-user-select: none;
+                height:24px;
+             }
+            .btn-group div{
+                font-size: 12px;
+                width: 40px;
+                text-align: center;
+                cursor: pointer;
+                float: left;
+            }
+
+            .btn-group div:hover{
+                background: #ccc;
+            }
+
+            .theme-dark .btn-group div:hover{
+                background: #666;
+            }
+            .theme-dark .btn-group{
+                color:#fff;
+            }
+
+
+           .data{
+                padding:60px;
+           }
+
+
+    </style>
+</head>
+<body class="markdown-body">
+    <div class="top-bar">
+        <div class="btn-group">
+            <div class="iconfont icon-min min" ></div>
+            <div class="iconfont icon-max-two max"></div>
+            <div class="iconfont icon-searchclose close" ></div>
+        </div>
+    </div>
+    <ul class="route">
+        
+    </ul>
+    <div class="app">
+        <div class="data"></div>
+    </div>
+
+  
+<script>
+
+var ipcRenderer =require('electron').ipcRenderer;
+$('body').on('click','.btn-group .iconfont',function(){
+        if($(this).hasClass('min')){
+            ipcRenderer.send('win-min');
+        }
+        if($(this).hasClass('max')){
+            ipcRenderer.send('win-max');
+        }
+        if($(this).hasClass('close')){
+            ipcRenderer.send('win-close');
+        }
+});
+
+function sort(node){
+    if( node&&node.children&&node.children.length){
+        node.children.sort((a,b)=>a.index-b.index);
+        node.children.forEach(n=>{
+            sort(n);
+        });
+    }
+}
+
+function listToTree(list){
+    var obj={};
+    list.forEach(d=>{
+        obj[d.id]=d;
+        d.children=[];
+    });
+
+    var root=null;
+    list.forEach(d=>{
+        if(obj[d.pid]){
+            obj[d.pid].children.push(d);
+        }
+    
+        if(d.isRoot){
+            root=d;
+            d.pid='';
+        }
+    });
+
+    sort(root);
+    return root; 
+};
+ 
+window.onload=()=>{
+    ipcRenderer.send('getPage');
+    ipcRenderer.on('pageData',(e,arg)=>{
+       if(arg.data){         //包含当前主页面所有数据，这是一个数组
+              var tree=listToTree(arg.data);
+              var str = JSON.stringify(tree);
+              var m=str.match(/[\u4e00-\u9fff\uf900-\ufaff]/g);
+              console.log((m?m.length:0))
+              $('.data').text(str);
+       }
+      
+    });
+}
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind</title>
+    <link rel="stylesheet" href="./dist/github-markdown.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./dist/icon/iconfont.css" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <script src="./dist/app.js"></script>
+    <style>
+         html,body{
+            width:100%;
+            height:100%;
+            padding: 0;
+            margin:0;
+            overflow: hidden;
+        }
+        .app{
+            width:100%;
+            height:100%;
+            overflow: auto;
+        }
+        .mind{
+            width:12000px;
+            height:12000px;
+            position: relative;
+            text-align: left;
+        }
+        .node{
+            position: absolute;
+            z-index:10;
+            padding: 6px 10px;
+            border-radius:3px;
+            font-size: 12px;
+            cursor: pointer;
+            max-width: 800px;
+            word-break: break-all;
+          
+        }
+        .node.root{
+            left:6000px;
+            top:6000px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color:#239eef;
+        }
+        h1,h2,h3,h4,h5,h6,blockquote,p{
+            margin:0!important;
+            padding: 0!important;
+        }
+        h1,h2{
+            border-bottom: 0!important;
+        }
+        blockquote{
+          text-indent: 6px;
+        }
+        .double-link{
+            outline: none;
+            color: #3298e0;
+        }
+        .double-link:hover{
+            opacity: 0.8;
+        }
+
+
+        .top-bar{
+                user-select: none;
+                position: fixed;
+                top:0;
+                left:0px;
+                right:0;
+                width:100%;
+                height: 24px;
+                line-height: 24px;
+                background:#f6f6f6;
+                color:#333;
+                z-index:2000;
+                -webkit-app-region: drag;
+            }
+
+             .theme-dark .top-bar{
+                background: #424242;
+                color:rgba(255,255,255,.01);
+              }
+
+              .top-bar .close:hover{
+                background: red;
+              }
+               
+              .btn-group{
+                position: fixed;
+                right: 0;
+                top:0;
+                z-index: 5000;
+                color:#333;
+                width: 120px;
+                overflow: hidden;
+                -webkit-app-region: no-drag;
+                -webkit-user-select: none;
+                height:24px;
+             }
+            .btn-group div{
+                font-size: 12px;
+                width: 40px;
+                text-align: center;
+                cursor: pointer;
+                float: left;
+            }
+
+            .btn-group div:hover{
+                background: #ccc;
+            }
+
+            .theme-dark .btn-group div:hover{
+                background: #666;
+            }
+            .theme-dark .btn-group{
+                color:#fff;
+            }
+            /* img{
+                max-width:800px;
+            } */
+
+            .route{
+                  position: fixed;
+                  top:30px;
+                  left:10px;
+                  background-color: #fff;
+                  box-shadow: 0 0 3px #ccc;
+                  padding: 0px 10px!important;
+                  margin:0;
+                  font-size: 12px;
+                  display: none;
+                  line-height: 28px;
+                  border-radius:3px;
+                  cursor: pointer;
+                  z-index: 10;
+            }
+            .route li{
+                display: inline-block;
+                margin-top:0!important;
+                list-style: none;
+            }
+            .route li .route-text{
+                margin-top:0!important;
+                max-width: 200px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                vertical-align: middle;
+                float:left;
+            }
+            .route .iconfont{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .left{
+                position: fixed;
+                z-index: 20;
+                width:300px;
+                background-color: #fff;
+                top:80px;
+                left:0px;
+                box-shadow: 0 0 3px #ccc;
+                max-height: 890px;
+                padding-bottom: 10px;
+            }
+            .left .iconfont{
+                position: absolute;
+                right:-21px;
+                width: 20px;
+                height:40px;
+                line-height: 40px;
+                top:6px;
+                background-color: #fff;
+                border-radius:3px;
+                box-shadow: 0 0 3px #ccc;
+                cursor: pointer;
+            }
+            .left h3{
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 30px;
+                text-indent: 6px;
+            }
+            .left ul{
+                padding-left:0px;
+                max-height:400px;
+                overflow-x: 0;
+                overflow-y: auto;
+            }
+            .left li{
+                line-height: 30px;
+                height: 30px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                list-style: none;
+                padding-right: 10px;
+                padding-left: 10px;
+                cursor: pointer;
+            }
+            .left li:hover{
+                background:#f5f5f5;
+            }
+
+            .text-left{
+  text-align: left;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.red{
+  color:red
+}
+.orange{
+  color:orange
+}
+.green{
+  color:green
+}
+.yellow{
+  color:yellow
+}
+.blue{
+  color:blue
+}
+.gray{
+  color: gray;
+}
+.white{
+  color:white
+}
+.black{
+  color:#333;
+}
+
+
+.lightgreen{
+  color:lightgreen
+}
+.lightpink{
+  color:lightpink;
+}
+.lightgray{
+  color:lightgray
+}
+.lightyellow{
+  color:lightyellow
+}
+
+.darkred{
+  color:darkred
+}
+.darkcyan{
+  color:darkcyan
+}
+.darkorange{
+  color:darkorange
+}
+.darksalmon{
+  color:darksalmon
+}
+
+
+.bg-red{
+  background-color:red
+}
+.bg-orange{
+  background-color: orange;
+}
+.bg-green{
+  background-color: green;
+}
+.bg-yellow{
+  background-color:yellow
+}
+.bg-blue{
+  background-color:blue
+}
+.bg-gray{
+  background-color: gray;
+}
+.bg-greenyellow{
+  background-color:greenyellow
+}
+.bg-white{
+  background-color:white
+}
+.bg-black{
+  background-color:#333;
+}
+
+
+    </style>
+</head>
+<body class="markdown-body">
+    <div class="top-bar">
+        <div class="btn-group">
+            <div class="iconfont icon-min min" ></div>
+            <div class="iconfont icon-max-two max"></div>
+            <div class="iconfont icon-searchclose close" ></div>
+        </div>
+    </div>
+    <ul class="route">
+        
+    </ul>
+    <div class="app">
+        <div id="map" class="mind"></div>
+    </div>
+
+    <div class="left">
+          <span class="close iconfont icon-tubiao-gongjuxiang-55"></span>
+          <div class="referLink">
+                <h3>链接文章</h3>
+                <ul>
+                  
+                </ul>
+          </div>
+
+          <div class="unReferLink">
+               <h3>提及未链接文章</h3>
+               <ul>
+               
+               </ul>
+          </div>
+    </div>
+<script>
+    var ipcRenderer =require('electron').ipcRenderer;
+    var path=require('path');
+    const { shell } = require('electron');
+
+    initMind(ipcRenderer,path,shell);
+
+</script>
+    
+</body>
+</html>
