@@ -2,6 +2,13 @@
 
 ## Roam Outliner Introduction
 
-Roam Outliner Is A Two-way Linked Note;
+Networked Thought
 
-official website :http://www.ckminder.cn/roam/outliner
+Official Website :http://www.ckminder.cn/roam/outliner
+
+## screenshot
+[](https://s1.ax1x.com/2020/09/09/w1ganJ.png)
+[](https://s1.ax1x.com/2020/09/09/w1gHgS.png)
+
+It's free before the official version；
+
