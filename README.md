@@ -16,6 +16,6 @@ http://www.ckminder.cn/roam/outliner
 ## how to use
 
 1. open menu ---> setting ----> open markdown ----> set local database path -----> set local plugin path
-2. use [[  ]] link other page
-3. use ((  )) link other block
+2. use [[  ]] to link other page
+3. use ((  )) to link other block
 
