@@ -19,3 +19,11 @@ http://www.ckminder.cn/roam/outliner
 2. use [[  ]] to link other page
 3. use ((  )) to link other block
 
+## plugin
+
+1. download this
+2. set local plugin path to plugin folder
+3. restart 
+4. open menu ---> plugin 
+
+
