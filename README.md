@@ -11,5 +11,11 @@ http://www.ckminder.cn/roam/outliner
 
 ![](https://s1.ax1x.com/2020/09/09/w1gHgS.png)
 
-It's free before the official version；
+**It's free before the official version;**
+
+## how to use
+
+1. open menu ---> setting ----> open markdown ----> set local database path -----> set local plugin path
+2. use [[  ]] link other page
+3. use ((  )) link other block
 
