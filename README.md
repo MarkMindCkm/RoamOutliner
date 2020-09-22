@@ -21,6 +21,10 @@ http://www.ckminder.cn/roam/outliner
 
 **the local database path is also the base path of markdown relative image and file link**
 
+## database
+
+you can download **realm studio** to manage your database
+
 
 ## plugin
 
@@ -28,5 +32,7 @@ http://www.ckminder.cn/roam/outliner
 2. set local plugin path to plugin folder
 3. restart 
 4. open menu ---> plugin 
+
+
 
 
