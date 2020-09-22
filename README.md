@@ -19,6 +19,9 @@ http://www.ckminder.cn/roam/outliner
 2. use [[  ]] to link other page
 3. use ((  )) to link other block
 
+**the local database path is also the base path of markdown relative image and file link**
+
+
 ## plugin
 
 1. download this
