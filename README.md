@@ -1,3 +1,5 @@
+You can use the lastest version.[lastest version](https://github.com/MarkMindCkm/Roam-Mind)
+
 # RoamOutliner
 
 ## Roam Outliner Introduction
