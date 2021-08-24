@@ -1,3 +1,6 @@
+该项目已废弃，过段时间将删除，请不要在使用，目前只开发markmind
+
+
 You can use the lastest version.[lastest version](https://github.com/MarkMindCkm/Roam-Mind)
 
 # RoamOutliner
